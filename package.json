@@ -1,0 +1,42 @@
+{
+  "name": "generator-discordbot",
+  "version": "1.0.0",
+  "description": "creates a base template to start a new Discord bot using discord.js",
+  "homepage": "",
+  "author": {
+    "name": "Pablo Rodríguez",
+    "email": "pabloviolin8@gmail.com",
+    "url": "https://github.com/MeLlamoPablo"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "discord",
+    "bot",
+    "command line",
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "generator-node": "^1.11.0",
+    "lodash": "^4.16.3",
+    "yeoman-generator": "^0.23.0",
+    "yosay": "^1.0.0"
+  },
+  "devDependencies": {
+    "yeoman-test": "^1.0.0",
+    "yeoman-assert": "^2.0.0",
+    "eslint": "^3.1.1",
+    "gulp": "^3.9.0",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-plumber": "^1.0.0",
+    "gulp-nsp": "^2.1.0"
+  },
+  "repository": "MeLlamoPablo/generator-discordbot",
+  "scripts": {
+    "prepublish": "gulp prepublish"
+  },
+  "license": "Apache-2.0"
+}
