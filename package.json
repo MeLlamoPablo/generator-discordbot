@@ -2,12 +2,8 @@
   "name": "generator-discordbot",
   "version": "1.0.0",
   "description": "creates a base template to start a new Discord bot using discord.js",
-  "homepage": "",
-  "author": {
-    "name": "Pablo Rodríguez",
-    "email": "pabloviolin8@gmail.com",
-    "url": "https://github.com/MeLlamoPablo"
-  },
+  "homepage": "https://github.com/mellamopablo/generator-discordbot#readme",
+  "author": "Pablo Rodríguez <pabloviolin8@gmail.com> (https://github.com/MeLlamoPablo)",
   "files": [
     "generators"
   ],
@@ -34,9 +30,15 @@
     "gulp-plumber": "^1.0.0",
     "gulp-nsp": "^2.1.0"
   },
-  "repository": "MeLlamoPablo/generator-discordbot",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mellamopablo/generator-discordbot.git"
+  },
   "scripts": {
     "prepublish": "gulp prepublish"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mellamopablo/generator-discordbot/issues"
+  }
 }
