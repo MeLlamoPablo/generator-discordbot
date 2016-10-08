@@ -1,6 +1,6 @@
 {
   "name": "generator-discordbot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "creates a base template to start a new Discord bot using discord.js",
   "homepage": "https://github.com/mellamopablo/generator-discordbot#readme",
   "author": "Pablo Rodríguez <pabloviolin8@gmail.com> (https://github.com/MeLlamoPablo)",
