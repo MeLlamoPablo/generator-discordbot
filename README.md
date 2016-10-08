@@ -37,7 +37,7 @@ $ yo discordbot
 
 After the generation is done, first make sure that your `config.js` looks ok. Then you may start working in your bot. Your bot's files are located in the `/lib` folder. `index.js` is your entry point. You may add your bot's commands to the `/commands` folder, and they will be automatically bound to your app. To learn how to create a command, please refer to the [clapp documentation](http://mellamopablo.github.io/clapp/latest.html). To learn how to interact with the Discord API, refer to the [discord.js documentation](http://hydrabolt.github.io/discord.js/#!/docs/tag/master/file/general/Welcome).
 
-Once you are done working, you can run your bot fromm your root folder with:
+Once you are done working, you can run your bot from your root folder with:
 
 ```bash
 $ npm run bot
