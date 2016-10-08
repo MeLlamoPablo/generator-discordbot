@@ -6,7 +6,7 @@
 `generator-discordbot` will include:
 
 * [discord.js](https://github.com/hydrabolt/discord.js), a library that allows you to interact with the [Discord API](https://discordapp.com/developers/docs/intro).
-* [clapp](https://github.com/MeLlamoPablo/clapp), a module that makes your bot behave like a in a command line interface.
+* [clapp](https://github.com/MeLlamoPablo/clapp), a module that makes your bot behave like in a command line interface.
 
 `generator-discordbot` is based on [generator-node](https://github.com/yeoman/generator-node), so your project will also include:
 
