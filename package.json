@@ -18,7 +18,7 @@
     "chalk": "^1.0.0",
     "generator-node": "^1.11.0",
     "lodash": "^4.16.3",
-    "yeoman-generator": "^0.23.0",
+    "yeoman-generator": "^0.24.1",
     "yosay": "^1.0.0"
   },
   "devDependencies": {
