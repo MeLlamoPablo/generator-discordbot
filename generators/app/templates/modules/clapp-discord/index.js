@@ -36,8 +36,8 @@ class App extends Clapp.App {
 }
 
 class Command extends Clapp.Command {
-  constructor(name, fn, desc = '', args = [], flags = []) {
-    super(name, fn, desc, args, flags);
+  constructor(name, fn, desc = '', args = [], flags = [], async = false) {
+    super(name, fn, desc, args, flags, async);
   }
 
   _getHelp(app) {
