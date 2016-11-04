@@ -40,6 +40,25 @@ module.exports = yeoman.Base.extend({
       name: 'token',
       message: 'Your bot\'s token (you can add this later)',
       default: ''
+    }, {
+      type: 'list',
+      name: 'voiceLib',
+      message: 'Do you need Discord voice support?',
+      choices: [
+        "No, I don't need voice support.",
+        "Yes, through node-opus (recommended over opusscript)",
+        "Yes, through opusscript"
+      ],
+      filter: function(val) {
+        switch (val) {
+          case "No, I don't need voice support.":
+            return "";
+          case "Yes, through node-opus (recommended over opusscript)":
+            return "node-opus";
+          case "Yes, through opusscript":
+            return "opusscript";
+        }
+      }
     }];
 
     return this.prompt(prompts).then(function (props) {
@@ -110,12 +129,18 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function () {
-    this.npmInstall(['discord.js', 'clapp'], {
+    var deps = ['discord.js', 'clapp'];
+
+    if (this.props.voiceLib) {
+      deps.push(this.props.voiceLib);
+    }
+
+    this.npmInstall(deps, {
       'save': true
     });
 
-    this.installDependencies({
-      bower: false
-    });
+    console.log(yosay("By the way, if you see that npm yells \"" + chalk.red("UNMET PEER" +
+      " DEPENDENCY") + "\" at you, don't  worry about that; as long as you have selected " +
+      "the voice library you want if you're using voice support, it'll be fine."));
   }
 });
