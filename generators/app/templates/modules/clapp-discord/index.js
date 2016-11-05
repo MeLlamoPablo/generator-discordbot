@@ -5,8 +5,8 @@ var Table      = require('cli-table2');
 var str        = require('./str-en.js');
 
 class App extends Clapp.App {
-  constructor(options, onReply, commands = []) {
-    super(options, onReply, commands);
+  constructor(options) {
+    super(options);
   }
 
   _getHelp() {
@@ -50,8 +50,8 @@ class App extends Clapp.App {
 }
 
 class Command extends Clapp.Command {
-  constructor(name, fn, desc = '', args = [], flags = [], async = false) {
-    super(name, fn, desc, args, flags, async);
+  constructor(options) {
+    super(options);
   }
 
   _getHelp(app) {

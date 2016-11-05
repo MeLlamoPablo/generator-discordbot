@@ -11,20 +11,21 @@ var app = new Clapp.App({
   name: cfg.name,
   desc: pkg.description,
   prefix: cfg.prefix,
-  version: pkg.version
-}, (msg, context) => {
-  // Fired when input is needed to be shown to the user.
+  version: pkg.version,
+  onReply: (msg, context) => {
+    // Fired when input is needed to be shown to the user.
 
-  context.msg.reply('\n' + msg).then(bot_response => {
-    if (cfg.deleteAfterReply.enabled) {
-      context.msg.delete(cfg.deleteAfterReply.time)
-                 .then(msg => console.log(`Deleted message from ${msg.author}`))
-                 .catch(console.log);
-      bot_response.delete(cfg.deleteAfterReply.time)
-                  .then(msg => console.log(`Deleted message from ${msg.author}`))
-                  .catch(console.log);
-    }
-  });
+    context.msg.reply('\n' + msg).then(bot_response => {
+      if (cfg.deleteAfterReply.enabled) {
+        context.msg.delete(cfg.deleteAfterReply.time)
+          .then(msg => console.log(`Deleted message from ${msg.author}`))
+          .catch(console.log);
+        bot_response.delete(cfg.deleteAfterReply.time)
+          .then(msg => console.log(`Deleted message from ${msg.author}`))
+          .catch(console.log);
+      }
+    });
+  }
 });
 
 // Load every command in the commands folder
