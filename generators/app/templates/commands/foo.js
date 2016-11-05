@@ -1,15 +1,14 @@
 var Clapp = require('../modules/clapp-discord');
 
-module.exports = new Clapp.Command(
-  'foo', // Command name
-  function(argv, context) {
+new Clapp.Command({
+  name: "foo",
+  desc: "does foo things",
+  fn: (argv, context) => {
     // This output will be redirected to your app's onReply function
     return 'Foo was executed!' + ' The value of testarg is: ' + argv.args.testarg +
       (argv.flags.testflag ? ' testflag was passed!' : '');
   },
-  'does foo things', // Command description
-  // Args
-  [
+  args: [
     {
       name: 'testarg',
       desc: 'A test argument',
@@ -18,8 +17,7 @@ module.exports = new Clapp.Command(
       default: 'testarg isn\'t defined'
     }
   ],
-  // Flags
-  [
+  flags: [
     {
       name: 'testflag',
       desc: 'A test flag',
@@ -28,4 +26,4 @@ module.exports = new Clapp.Command(
       default: false
     }
   ]
-);
+});
