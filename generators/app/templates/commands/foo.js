@@ -1,6 +1,6 @@
 var Clapp = require('../modules/clapp-discord');
 
-new Clapp.Command({
+module.exports = new Clapp.Command({
   name: "foo",
   desc: "does foo things",
   fn: (argv, context) => {
