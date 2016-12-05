@@ -1,8 +1,8 @@
 "use strict";
 
-var Clapp      = require('clapp');
-var Table      = require('cli-table2');
-var str        = require('./str-en.js');
+const Clapp = require('clapp')
+  , Table = require('cli-table2')
+  , str   = require('./str-en.js');
 
 class App extends Clapp.App {
   constructor(options) {
@@ -133,5 +133,7 @@ class Command extends Clapp.Command {
 
 module.exports = {
   App: App,
-  Command: Command
+  Argument: Clapp.Argument,
+  Command: Command,
+  Flag: Clapp.Flag
 };
