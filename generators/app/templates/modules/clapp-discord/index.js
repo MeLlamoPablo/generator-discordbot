@@ -16,7 +16,7 @@ class App extends Clapp.App {
         this.name + (typeof this.version !== 'undefined' ? ' v' + this.version : '') + '\n' +
         this.desc + '\n\n' +
 
-        str.help_usage + this.prefix + ' ' + str.help_command + '\n\n' +
+        str.help_usage + this.prefix + this.separator + str.help_command + '\n\n' +
 
         str.help_cmd_list + '\n\n'
       ;
