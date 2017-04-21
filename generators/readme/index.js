@@ -1,60 +1,68 @@
-'use strict';
-var _ = require('lodash');
-var generators = require('yeoman-generator');
+"use strict";
 
-module.exports = generators.Base.extend({
-  constructor: function () {
-    generators.Base.apply(this, arguments);
+const Generator = require("yeoman-generator")
+    , _         = require("lodash");
 
-    this.option('generateInto', {
+module.exports = class ReadmeGenerator extends Generator {
+
+  constructor(args, opts) {
+
+    super(args, opts);
+
+    this.option("generateInto", {
       type: String,
       required: false,
-      defaults: '',
-      desc: 'Relocate the location of the generated files.'
+      defaults: "",
+      desc: "Relocate the location of the generated files."
     });
 
-    this.option('name', {
+    this.option("name", {
       type: String,
       required: true,
-      desc: 'Project name'
+      desc: "Project name"
     });
 
-    this.option('description', {
+    this.option("description", {
       type: String,
       required: true,
-      desc: 'Project description'
+      desc: "Project description"
     });
 
-    this.option('githubAccount', {
+    this.option("githubAccount", {
       type: String,
       required: true,
-      desc: 'User github account'
+      desc: "User github account"
     });
 
-    this.option('authorName', {
+    this.option("authorName", {
       type: String,
       required: true,
-      desc: 'Author name'
+      desc: "Author name"
     });
 
-    this.option('authorUrl', {
+    this.option("authorUrl", {
       type: String,
       required: true,
-      desc: 'Author url'
+      desc: "Author url"
     });
 
-    this.option('coveralls', {
+    this.option("coveralls", {
       type: Boolean,
       required: true,
-      desc: 'Include coveralls badge'
+      desc: "Include coveralls badge"
     });
-  },
 
-  writing: function () {
-    var pkg = this.fs.readJSON(this.destinationPath(this.options.generateInto, 'package.json'), {});
+  }
+
+  writing() {
+
+    const pkg = this.fs.readJSON(
+      this.destinationPath(this.options.generateInto, "package.json"), {}
+    );
+
     this.fs.copyTpl(
-      this.templatePath('README.md'),
-      this.destinationPath(this.options.generateInto, 'README.md'),
+      this.templatePath("README.md"),
+      this.destinationPath(this.options.generateInto, "README.md"),
       {
         projectName: this.options.name,
         safeProjectName: _.camelCase(this.options.name),
@@ -69,5 +77,7 @@ module.exports = generators.Base.extend({
         content: this.options.content
       }
     );
+
   }
-});
+
+}
