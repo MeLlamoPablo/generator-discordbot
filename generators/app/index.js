@@ -1,55 +1,58 @@
-'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
-var _ = require('lodash');
+"use strict";
 
-module.exports = yeoman.Base.extend({
-  prompting: function () {
-    // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the shining ' + chalk.red('generator-discordbot') + ' generator!'
-    ));
+const Generator = require("yeoman-generator")
+    , chalk     = require("chalk")
+    , yosay     = require("yosay")
+    , _         = require("lodash");
 
-    this.composeWith('node:app', {
-      options: {
-        babel: false,
-        boilerplate: false,
-        readme: "## Installation" + "\n"
-              + "\n"
-              + "Clone this repository, and run:" + "\n"
-              + "```sh" + "\n"
-              + "$ npm install" + "\n"
-              + "```" + "\n"
-              + "\n"
-              + "## Usage" + "\n"
-              + "\n"
-              + "```js" + "\n"
-              + "$ npm run bot" + "\n"
-              + "```"
-      }
-    }, {
-      local: require.resolve('generator-node/generators/app')
+module.exports = class DiscordBotGenerator extends Generator {
+
+  default() {
+
+    this.composeWith(require.resolve("generator-node/generators/app"), {
+      babel: false,
+      boilerplate: false,
+      readme: "## Installation" + "\n"
+      + "\n"
+      + "Clone this repository, and run:" + "\n"
+      + "```sh" + "\n"
+      + "$ npm install" + "\n"
+      + "```" + "\n"
+      + "\n"
+      + "## Usage" + "\n"
+      + "\n"
+      + "```sh" + "\n"
+      + "$ npm run bot" + "\n"
+      + "```"
     });
 
-    var prompts = [{
-      name: 'botName',
-      message: 'Your bot\'s username (without the discriminator; you can add this later)',
-      default: 'My Discord Bot'
+  }
+
+  prompting() {
+
+    // Have Yeoman greet the user.
+    this.log(yosay(
+      `Welcome to the shining ${chalk.red('generator-discordbot')} generator!`
+    ));
+
+    let prompts = [{
+      name: "botName",
+      message: "Your bot's username (without the discriminator; you can add this later)",
+      default: "My Discord Bot"
     }, {
-      name: 'token',
-      message: 'Your bot\'s token (you can add this later)',
-      default: ''
+      name: "token",
+      message: "Your bot's token (you can add this later)",
+      default: ""
     }, {
-      type: 'list',
-      name: 'voiceLib',
-      message: 'Do you need Discord voice support?',
+      type: "list",
+      name: "voiceLib",
+      message: "Do you need Discord voice support?",
       choices: [
         "No, I don't need voice support.",
         "Yes, through node-opus (recommended over opusscript)",
         "Yes, through opusscript"
       ],
-      filter: function(val) {
+      filter: function (val) {
         switch (val) {
           case "No, I don't need voice support.":
             return "";
@@ -61,23 +64,25 @@ module.exports = yeoman.Base.extend({
       }
     }];
 
-    return this.prompt(prompts).then(function (props) {
+    return this.prompt(prompts).then((props) => {
       // To access props later use this.props.someAnswer;
       this.props = props;
-    }.bind(this));
-  },
+    });
 
-  writing: function () {
+  }
+
+  writing() {
+
     // Copy templates:
     // ./lib
     this.fs.copyTpl(
-      this.templatePath('index.js'),
-      this.destinationPath('lib/index.js')
+      this.templatePath("index.js"),
+      this.destinationPath("lib/index.js")
     );
 
     this.fs.copyTpl(
-      this.templatePath('config.js'),
-      this.destinationPath('config.js'), {
+      this.templatePath("config.js"),
+      this.destinationPath("config.js"), {
         botName: this.props.botName,
         prefix: '-' + _.toLower(this.props.botName),
         token: this.props.token
@@ -86,38 +91,30 @@ module.exports = yeoman.Base.extend({
 
     // ./lib/commands
     this.fs.copyTpl(
-      this.templatePath('commands/foo.js'),
-      this.destinationPath('lib/commands/foo.js')
+      this.templatePath("commands/foo.js"),
+      this.destinationPath("lib/commands/foo.js")
     );
 
     // ./lib/modules/clapp-discord
     this.fs.copyTpl(
-      this.templatePath('modules/clapp-discord/index.js'),
-      this.destinationPath('lib/modules/clapp-discord/index.js')
+      this.templatePath("modules/clapp-discord/index.js"),
+      this.destinationPath("lib/modules/clapp-discord/index.js")
     );
 
     this.fs.copyTpl(
-      this.templatePath('modules/clapp-discord/str-en.js'),
-      this.destinationPath('lib/modules/clapp-discord/str-en.js')
+      this.templatePath("modules/clapp-discord/str-en.js"),
+      this.destinationPath("lib/modules/clapp-discord/str-en.js")
     );
 
     this.fs.copyTpl(
-      this.templatePath('modules/clapp-discord/package.json'),
-      this.destinationPath('lib/modules/clapp-discord/package.json')
-    );
-
-    // ./test
-    this.fs.copyTpl(
-      this.templatePath('test.js'),
-      this.destinationPath('test/index.js'), {
-        pkgName: _.camelCase(this.props.botName)
-      }
+      this.templatePath("modules/clapp-discord/package.json"),
+      this.destinationPath("lib/modules/clapp-discord/package.json")
     );
 
     // Add the "run bot" script to the package.json
-    var pkg = this.fs.readJSON(this.destinationPath('package.json'), {});
+    let pkg = this.fs.readJSON(this.destinationPath("package.json"), {});
 
-    var scripts = {
+    let scripts = {
       "bot": "node ./lib/index.js"
     };
 
@@ -125,11 +122,13 @@ module.exports = yeoman.Base.extend({
       scripts: scripts
     });
 
-    this.fs.writeJSON(this.destinationPath('package.json'), pkg);
-  },
+    this.fs.writeJSON(this.destinationPath("package.json"), pkg);
 
-  install: function () {
-    var deps = ['discord.js', 'clapp'];
+  }
+
+  install() {
+
+    let deps = ["discord.js", "clapp"];
 
     if (this.props.voiceLib) {
       deps.push(this.props.voiceLib);
@@ -140,7 +139,9 @@ module.exports = yeoman.Base.extend({
     });
 
     console.log(yosay("By the way, if you see that npm yells \"" + chalk.red("UNMET PEER" +
-      " DEPENDENCY") + "\" at you, don't  worry about that; as long as you have selected " +
+        " DEPENDENCY") + "\" at you, don't  worry about that; as long as you have selected " +
       "the voice library you want if you're using voice support, it'll be fine."));
+
   }
-});
+
+};

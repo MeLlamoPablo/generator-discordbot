@@ -11,12 +11,10 @@
 `generator-discordbot` is based on [generator-node](https://github.com/yeoman/generator-node), so your project will also include:
 
 * A filled `package.json` file
-* [gulp](http://gulpjs.com/) task runner
-* [mocha](http://mochajs.org/) unit test
-* [ESLInt](http://eslint.org/) linting and code style checking
-* [Istanbul](https://gotwarlost.github.io/istanbul/) code coverage (optionally tracked on [Coveralls](https://coveralls.io/))
+* [ESLint](http://eslint.org/) linting and code style checking
+* [nsp](https://nodesecurity.io/) known vulnerability check
 * [Travis CI](https://travis-ci.org/) continuous integration (optional)
-* [License](https://spdx.org/licenses/)
+* A [license](https://spdx.org/licenses/)
 
 ## Installation
 

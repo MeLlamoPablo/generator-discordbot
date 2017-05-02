@@ -1,13 +1,15 @@
-var Clapp = require('../modules/clapp-discord');
+const Clapp = require('../modules/clapp-discord');
 
 module.exports = new Clapp.Command({
   name: "foo",
   desc: "does foo things",
-  fn: (argv, context) => {
+  fn: (argv, context) => new Promise((resolve, reject) => {
+
     // This output will be redirected to your app's onReply function
-    return 'Foo was executed!' + ' The value of testarg is: ' + argv.args.testarg +
-      (argv.flags.testflag ? ' testflag was passed!' : '');
-  },
+    resolve(`Foo was executed! The value of testarg is: ${argv.args.testarg}.` +
+      (argv.flags.testflag ? '\ntestflag was passed!' : ''));
+
+  }),
   args: [
     {
       name: 'testarg',
