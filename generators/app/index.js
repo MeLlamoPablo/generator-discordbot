@@ -10,22 +10,20 @@ module.exports = class DiscordBotGenerator extends Generator {
   default() {
 
     this.composeWith(require.resolve("generator-node/generators/app"), {
-      options: {
-        babel: false,
-        boilerplate: false,
-        readme: "## Installation" + "\n"
-        + "\n"
-        + "Clone this repository, and run:" + "\n"
-        + "```sh" + "\n"
-        + "$ npm install" + "\n"
-        + "```" + "\n"
-        + "\n"
-        + "## Usage" + "\n"
-        + "\n"
-        + "```js" + "\n"
-        + "$ npm run bot" + "\n"
-        + "```"
-      }
+      babel: false,
+      boilerplate: false,
+      readme: "## Installation" + "\n"
+      + "\n"
+      + "Clone this repository, and run:" + "\n"
+      + "```sh" + "\n"
+      + "$ npm install" + "\n"
+      + "```" + "\n"
+      + "\n"
+      + "## Usage" + "\n"
+      + "\n"
+      + "```sh" + "\n"
+      + "$ npm run bot" + "\n"
+      + "```"
     });
 
   }
@@ -34,7 +32,7 @@ module.exports = class DiscordBotGenerator extends Generator {
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      `Welcome to the shining ${chalk.red('genera+tor-discordbot')} generator!`
+      `Welcome to the shining ${chalk.red('generator-discordbot')} generator!`
     ));
 
     let prompts = [{
@@ -54,7 +52,7 @@ module.exports = class DiscordBotGenerator extends Generator {
         "Yes, through node-opus (recommended over opusscript)",
         "Yes, through opusscript"
       ],
-      filter: function(val) {
+      filter: function (val) {
         switch (val) {
           case "No, I don't need voice support.":
             return "";
@@ -113,14 +111,6 @@ module.exports = class DiscordBotGenerator extends Generator {
       this.destinationPath("lib/modules/clapp-discord/package.json")
     );
 
-    // ./test
-    /*this.fs.copyTpl(
-      this.templatePath("test.js"),
-      this.destinationPath("test/index.js"), {
-        pkgName: _.camelCase(this.props.botName)
-      }
-    );*/
-
     // Add the "run bot" script to the package.json
     let pkg = this.fs.readJSON(this.destinationPath("package.json"), {});
 
@@ -153,5 +143,5 @@ module.exports = class DiscordBotGenerator extends Generator {
       "the voice library you want if you're using voice support, it'll be fine."));
 
   }
-}
 
+};
